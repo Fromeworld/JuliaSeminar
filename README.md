@@ -1,24 +1,29 @@
 # JuliaSeminar
 
-Topics:
+What we need:
+* The latest, stable, [Julia release](https://julialang.org/downloads/)
+* Fire up Julia before the presentation and install these packages, by typing `]` followed by `add Measurements, Plots, Pluto` and pressing `Enter`.
 
-* Basic
-  - Jupyter
+That's it, we are good to go.
+
+Presentations:
+
+* Scientific coding in Julia
+
+* Introduction
+  - Variables
+  - Functions
   - Control flow
   - Types
-  - LinearAlgebra
-  - Package Manager
-  - Plotting
-  - Style guide
   
 * Intermediate
+  - LinearAlgebra
   - Threading
   - Profiling
-  - Performance
-  - Calling external code
+  - Milking performance
   - Git (version control)
   
 * Advanced
-  - Code representations
+  - Metaprogramming & code representations
   - Automatic diff
-  - Metaprogramming
+  - Basic ML

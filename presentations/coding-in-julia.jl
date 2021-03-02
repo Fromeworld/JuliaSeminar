@@ -48,16 +48,18 @@ md"""
 ## So why exactly is Julia great?
 
 #### Julia is (easily) fast
-It's tricky to define this, especially since most languages are "equivalent" on a theoretical level but in practise greatly differ.
+Tricky definition: 
+- Most languages are "equivalent" on a theoretical level but in practise greatly differ
+- One can write terribly slow programs in languages that are supposed to be fast
 
-One can write terribly slow programs in languages that are "supposed" to be fast. But the norm is that something in pure Julia will run a lot faster than on Python or Matlab (even though Pythonists will argue that using the right tools Python can get close).
+The norm is that something in pure Julia will run a lot faster than in Python or Matlab
+(e.g., Pythonists will argue that using the right tools Python can get close but not only you need to be a Numpy wizard, sometimes it's straight out impossible to vectorize)
 
-With native Julia it’s possible to beat optimized C libraries (currently the some of the fastest linear-algebra operations are in Julia: check `LoopVectorization.jl`).
-Also no need to be a numpy wizard to vectorize the code (sometimes it's also impossible)
+**Native Julia can beat C libraries** (currently the some of the fastest linear-algebra operations out there are in Julia: check `LoopVectorization.jl`).
 
-No magic: Julia shares the same LLVM backend and C so the compiled performances should be very similar, depending mostly on the programmer's cleverness.
+No magic, just depends on the programmer's ingenuity: Julia shares the same LLVM backend with C so the compiled performances should be very similar!
 
-So we should not focus on the fact that Julia is faster or not but that it's simply orders of magnitude easier to write high-performance in Julia than in other languages due to the higher level abstracations.
+We should not focus on the fact that Julia is faster or not but **that it's simply orders of magnitude easier to write high-performance code in Julia than in other languages**
 """
 
 # ╔═╡ 528ae93c-7b49-11eb-12f2-63a759823973
@@ -204,7 +206,7 @@ md"""
 
 - _static, compiled, user types_ (in C, Fortran, etc)
 - _dynamic, interpreted, standard types_ (in Python, Mathematica, etc)
-- _dynamic, compiled, user+standard types_ (Julia)
+- **dynamic, compiled, user types** (Julia)
 
 Unlike static, with dynamic languages the types of variables don't have to be known an runtime (type annotation is optional).
 
@@ -214,7 +216,7 @@ Having both of these is unique to Julia: the compiler can infer the concrete typ
 
 NOTE:
 - Julia's type system has limits, no arrow types (f: Rⁿ → Rᵐ)
-- The types has less dynamism than in Python (cannot add fields to a type). In Julia the number and type of fields are static such that theyr byte size and memory setups can be determined. So a concretely typed Vector{Float64} can be very fast (while in Python a List is essentially a Vector{Any} and one needs to resort to Numpy for speed). 
+- The types has less dynamism than in Python (cannot add fields to a type). In Julia the number and type of fields are static such that their byte size and memory setups can be determined. So a concretely typed Vector{Float64} can be very fast (while in Python a List is essentially a Vector{Any} and one needs to resort to Numpy for speed). 
 """
 
 # ╔═╡ 21ec2982-7b49-11eb-2fc3-a799a8b09712
