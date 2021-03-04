@@ -447,7 +447,7 @@ end
 
 ##### So what's the difference?
 
-This creates a function `f1` with 1-argument which we can address by `x`
+As we have seen, this creates a function `f1` with 1-argument which we can address by `x`
 
 ```julia
 f1(x) = ...
@@ -458,6 +458,24 @@ This assigns to the name `f2` a 1-argument function, with an argument which can 
 
 ```julia
 f2 = x -> undefined
+```
+
+Examples:
+
+- We can directly call an anynoymous functions
+```julia
+(x -> x + 1)(3) # returns 4
+```
+
+- It's very useful for quick and disposable functions. Consider `sum`, which can
+    - sum a container `sum([1,2,3]) = 6`
+    - sum a function applied to all elements of a container
+```julia
+add_1(x) = x + 1
+sum(add_1, [1,2,3]) == sum([1+1, 2+1, 3+1]) == 9
+
+# can be done much cleanear with an anonymous function
+sum(x -> x + 1, [1,2,3]) # returns 9
 ```
 """
 
@@ -539,8 +557,6 @@ md"""
 
 The term multiple dispatch refers to calling the right implementation of a function based on the arguments. Note that only the positional arguments are used to look up the correct method.
 
-When the function is used again, but with different argument types, a new method is selected. This is called overloading.
-
 This is really what is happening all the time under the hood: adding Ints is very different from adding Complex numbers, for example!
 
 In Julia, a function may contain multiple concrete implementations (called Methods), selected via multiple dispatch, whereas functions in Python have a single implementation (no polymorphism).
@@ -561,33 +577,34 @@ my_sum("Fuck", "COVID19") # returns a concatenated string
 ```
 """
 
-# ╔═╡ 6fd63200-7b88-11eb-1b26-c59349f8c563
+# ╔═╡ 23a1f126-7cc8-11eb-0d95-7f42c64921b0
 md"""
-Julia's standard functions are no more important or special than our functions!
+#### Exercise: Add (+) for `String`s to Julia
+No functions in Julia are more special than others.
 
-And our `my_sum` is actually just the already included `(+)` operator.
+That applies to common operators as well. To add a `method` to the `(+)` operator, we have to import it from the Julia `Base` library (since it's Julia who owns `+`)
+```julia
+import Base: +
+```
+Extend `(+)` to also work with strings (e.g., `my_syum`) and `sum` an array of `String`s.
 
-Note that Julia already knew how to add integers, we just decided to call that `my_sum`
+**Pro-tip**: Since we don't own neither `(+)` or `String` this is called _type piracy_ and should be avoided as it can lead to unexpected behaviour
+"""
 
-So let's extend Julia's `(+)` to do that thing we wanted with strings
-
-We are adding a new `method` to the `(+)` operator which is inside the `Base` library (of Julia).
-The (:) is there because `+` is an infix operator so it requires that (:) to be parsed correctly.
+# ╔═╡ 29b15dd0-7cc9-11eb-08ad-f301320aca17
+#= md"""
 ```julia
 Base.:+(a::String, b::String) = a * " " * b
 
 "Hello" + "my" + "friends"
 
-# A function `sum` that sums the elements of a `Container` should now work with a container of strings!
 sum(["Really,", "I", "meant", "it,", "fuck", "COVID19"])
 ```
-
-Note: Since we don't own neither (+) or `String`, this is called type piracy and this should be avoided in most cases
-"""
+""" =#
 
 # ╔═╡ 6efa5e40-7b85-11eb-2459-9f052c340c4f
 md"""
-#### Exercise:
+#### Exercise: Recursive `length`
 Write a function that calculates the total number of elements inside nested arrays, ultimately containing numbers
 
 Examples:
@@ -1084,7 +1101,8 @@ import Measurements: ±
 # ╟─520e5cb2-7b87-11eb-0748-b39dbd03ca14
 # ╟─a05faaea-7b87-11eb-0c4c-77533db92365
 # ╟─2d756e8a-7b88-11eb-0641-79cb95e33aa1
-# ╟─6fd63200-7b88-11eb-1b26-c59349f8c563
+# ╟─23a1f126-7cc8-11eb-0d95-7f42c64921b0
+# ╟─29b15dd0-7cc9-11eb-08ad-f301320aca17
 # ╟─6efa5e40-7b85-11eb-2459-9f052c340c4f
 # ╟─4d6378d0-7c2e-11eb-0c59-e10c86826945
 # ╟─4acaca00-7b8a-11eb-0a46-894196ba8141

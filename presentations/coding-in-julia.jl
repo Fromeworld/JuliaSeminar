@@ -57,7 +57,7 @@ The norm is that something in pure Julia will run a lot faster than in Python or
 
 **Native Julia can beat C libraries** (currently the some of the fastest linear-algebra operations out there are in Julia: check `LoopVectorization.jl`).
 
-No magic, just depends on the programmer's ingenuity: Julia shares the same LLVM backend with C so the compiled performances should be very similar!
+No magic, it just depends on the programmer's ingenuity: Julia shares the same LLVM backend with C so the compiled performances can be very similar!
 
 We should not focus on the fact that Julia is faster or not but **that it's simply orders of magnitude easier to write high-performance code in Julia than in other languages**
 """
