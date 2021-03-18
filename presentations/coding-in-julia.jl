@@ -9,11 +9,19 @@ html"<button onclick='present()'>present</button>"
 
 # ╔═╡ 1fc8fccc-7758-11eb-3d10-b1c72df65ebd
 md"""
+<<<<<<< HEAD
 # Coding scientifically in Julia
 
 - Julia is easy to read and write (but so are Python or Matlab)
 - Julia is performant and scalable* (but so are C or Fortran)
 - Julia is interactive (so are Python or Mathematica)
+=======
+# Programming scientifically in Julia
+
+- Julia is easy to read and write (but so are Python or Matlab)
+- Julia is performant and scalable* (but so are C or Fortran)
+- Julia is interactive (but so are Python or Mathematica)
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 
 > Researchers often find themselves coding algorithms in one programming language, only to have to rewrite them in a faster one.
 
@@ -40,7 +48,11 @@ md"""
 
 #### Julia is easy to learn
 
+<<<<<<< HEAD
 This easiness arrises from a clear and concise syntax (similar but quite more refined than Python), which results in small but clear code
+=======
+This easiness arrises from a clear and concise syntax (similar but quite more refined than Python), which results in small but clear code.
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 """
 
 # ╔═╡ be149b64-7b47-11eb-14cc-2ba364843de5
@@ -52,6 +64,7 @@ Tricky definition:
 - Most languages are "equivalent" on a theoretical level but in practise greatly differ
 - One can write terribly slow programs in languages that are supposed to be fast
 
+<<<<<<< HEAD
 The norm is that something in pure Julia will run a lot faster than in Python or Matlab
 (e.g., Pythonists will argue that using the right tools Python can get close but not only you need to be a Numpy wizard, sometimes it's straight out impossible to vectorize)
 
@@ -60,6 +73,13 @@ The norm is that something in pure Julia will run a lot faster than in Python or
 No magic, it just depends on the programmer's ingenuity: Julia shares the same LLVM backend with C so the compiled performances can be very similar!
 
 We should not focus on the fact that Julia is faster or not but **that it's simply orders of magnitude easier to write high-performance code in Julia than in other languages**
+=======
+The norm is that something in pure Julia will run a lot faster than in most dynamic languages.
+
+**Native Julia can beat highly optimised libraries** (some of the fastest BLAS-like operations are in `LoopVectorization.jl`). No magic: Julia shares the same LLVM backend with e.g. C++ so the compiled performances can be very similar.
+
+Don't focus on the fact that Julia is faster or not but **that it's simply much simpler to write high-performant and clear code in Julia than in other languages**.
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 """
 
 # ╔═╡ 528ae93c-7b49-11eb-12f2-63a759823973
@@ -83,8 +103,11 @@ function mean_count(x::AbstractArray{T}) where T<:AbstractFloat
     return (result, count)
 end
 ```
+<<<<<<< HEAD
 
 (achieved with parametric polymorphism)
+=======
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 """
 
 # ╔═╡ 8b1823f0-7b49-11eb-227f-ab9723138570
@@ -202,12 +225,17 @@ REDUCE_ONE(nanmean, DTYPE0) {
 md"""
 ## So why exactly is Julia great?
 
+<<<<<<< HEAD
 #### Julia is both strongly-typed and dynamic
+=======
+#### Julia is (uniquely) both strongly-typed and dynamic
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 
 - _static, compiled, user types_ (in C, Fortran, etc)
 - _dynamic, interpreted, standard types_ (in Python, Mathematica, etc)
 - **dynamic, compiled, user types** (Julia)
 
+<<<<<<< HEAD
 Unlike static, with dynamic languages the types of variables don't have to be known an runtime (type annotation is optional).
 
 Unlike interpreted, the functions are compiled (properly optimised) and don't have to be interpreted at run-time
@@ -218,16 +246,34 @@ NOTE:
 - Julia's type system has limits, no arrow types (f: Rⁿ → Rᵐ)
 - The types has less dynamism than in Python (cannot add fields to a type). In Julia the number and type of fields are static such that their byte size and memory setups can be determined. So a concretely typed Vector{Float64} can be very fast (while in Python a List is essentially a Vector{Any} and one needs to resort to Numpy for speed). 
 """
+=======
+In dynamic languages the types of variables don't have to be known an runtime (type annotation is optional).
+
+In compiled languages the functions are compiled (properly optimised) and don't suffer from interpretation overhead at runtime.
+
+- Julia's type system has limits, no arrow types (f: Rⁿ → Rᵐ)
+- The types has less dynamism than in Python (cannot add fields to a type)
+"""
+# . In Julia the number and type of fields are static such that their byte size and memory setups can be determined. So a concretely typed Vector{Float64} can be very fast (while in Python a List is essentially a Vector{Any} and one needs to resort to Numpy for speed). 
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 
 # ╔═╡ 21ec2982-7b49-11eb-2fc3-a799a8b09712
 md"""
 ## So why exactly is Julia great?
 
+<<<<<<< HEAD
 #### Julia functions have multiple dispatch
 This is a CORE programming paradigm
 > People come to Julia for speed but stay for the multiple dispatch
 
 Difference from OOP (Python)
+=======
+#### Julia has multiple dispatch
+
+> People come to Julia for speed but stay for the multiple dispatch
+
+Difference from OOP (single-dispatch)
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 ```
 class Car 
     def __init__(self, color, brand):
@@ -239,11 +285,22 @@ class Car
 		return "I'm a {} {}".format(self.color, self.brand)
 
 car = Car("yellow", "mercedes")
+<<<<<<< HEAD
 car.information() # prints "I'm a yellow mercedes"
 ```
 
 Since there are no classes in Julia, the structures only contain data but no methods
 ```
+=======
+car.information()
+```
+
+Philosophy: Methods shouldn’t belong to a specific data type:
+> It makes little sense to artificially deem the operations to "belong" to one argument more than any of the others.
+
+Since there are no classes in Julia, the structures only contain data but no methods
+```julia
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 struct Car
 	color
 	brand
@@ -252,6 +309,7 @@ end
 information(c::Car) = "I'm a $(c.color) $(c.brand)"
 
 car = Car("yellow", "mercedes")
+<<<<<<< HEAD
 information(car) # prints "I'm a yellow mercedes"
 ```
 
@@ -279,6 +337,31 @@ def information(object):
 	if type(object) == Car
 		return "I'm just a car"
 ```
+=======
+information(car)
+```
+
+##### Levels of dispatch
+- none: `f(x1,x2,x3,...)` constant expressive power (e.g., Python functions)
+- single: `(x1::T1).f(x2,x3,...)` linear expressive power (e.g., Python class methods)
+- multiple `f(x1::T1,x2::T2,x3,...)` exponential expressive power (Julia's core  paradigm)
+
+#### Sharing types
+Much simpler to define **new** operations on existing types
+
+- Extending existing operations
+```julia
+information(n::Number) = "I'm a number"
+```
+Give several functions the same name, because they perform conceptually similar tasks, but operate on different types.
+
+- Defining new operations
+```julia
+is_beautiful(c::Car) = (c.color == "rose gold")
+```
+
+How to do it in OOP? With inheritance one needs to use another name (`NewCar`) or edit the original class or simply drop (single) dispatch. 
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 """
 
 # ╔═╡ 2cf41e6e-7b49-11eb-02bf-23174a7e8ce3
@@ -286,6 +369,7 @@ md"""
 ## So why exactly is Julia great?
 
 #### Julia is garbage-collected
+<<<<<<< HEAD
 We don't have to worry about memory management
 
 #### Julia supports concurrent, parallel and distributed computing
@@ -293,6 +377,15 @@ Natively and with simple and clear syntax
 
 #### Julia interfaces particularly well with other languages
 We can directly call Python or C
+=======
+No need to worry about memory management.
+
+#### Julia supports concurrent, parallel and distributed computing
+Natively and with simple and clear syntax.
+
+#### Julia interfaces particularly well with other languages
+Can directly call Python or C.
+>>>>>>> e11a77bf9ef798dc4add2e176406283aa41b8ee8
 """
 
 # ╔═╡ Cell order:
