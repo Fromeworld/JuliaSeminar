@@ -320,7 +320,7 @@ Generic programming allied with multiple dispatch allows one to share types with
 # ╔═╡ 59e7aaf0-8cac-11eb-0ea8-3fb87d36ad90
 md"""
 #### Exercise: Ising & Wilson chains 
-- (Re) Consider a finite ``1``D spin-chain Hamiltonian with ``N`` sites coupled to a magnetic field `` H_N = -\sum^N_i \sigma^z_i \otimes \sigma^z_{i+1} + h \sum^N_i \sigma^x_i``
+- (Re) Consider a finite ``1``D spin-chain Hamiltonian with ``N`` sites coupled to a magnetic field `` H_N = -\sum^N_i \sigma^z_i \otimes \sigma^z_{i+1} - h \sum^N_i \sigma^x_i``
   - Construct this Hamiltonian
   - Diagonalise the Hamiltonian `using LinearAlgebra`'s `eigen` function
     - Which states (columns of the eigenvectors matrix) have the lowest energy for ``h=0`` and ``h \gg 1``?
@@ -340,10 +340,10 @@ function H(N; h=0.0)
 	σˣ = [0 1; 1 0]
 	σᶻ = [1 0; 0 -1]
 
-	T(i) = foldl(kron, ((j == i || j == i + 1) ? σᶻ : id for j in 1:N))
-	M(i) = foldl(kron, j == i ? σˣ : id for j in 1:N)
+	T(i) = -foldl(kron, ((j == i || j == i + 1) ? σᶻ : id for j in 1:N))
+	M(i) = -foldl(kron, j == i ? σˣ : id for j in 1:N)
 
-	return mapreduce(M, +, 1:N) - mapreduce(T, +, 1:(N-1))
+	return mapreduce(M, +, 1:N) + mapreduce(T, +, 1:(N-1))
 end
 ```
 
@@ -427,7 +427,7 @@ end
 """
 
 # ╔═╡ b58a861c-7b50-11eb-286d-c5a5dd03429f
-md"""
+#= md"""
 # Fixed points
 
 A fixed point of a function is an element of the function's domain that is mapped to itself by the function.
@@ -507,7 +507,7 @@ plot(ps[[1,3],:], ps[[2,4],:];
 # Another example
 logistic_map(r) = approx_stop_fixed_point(x -> r * x * (1-x))
 ```
-"""
+""" =#
 
 # ╔═╡ Cell order:
 # ╟─9ba8170a-7b50-11eb-0aac-adc493e1f386
