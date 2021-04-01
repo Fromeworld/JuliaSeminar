@@ -1,4 +1,4 @@
-# Update the fork
+# Update the fork from the upstream
 
 """bash
 git fetch upstream
